@@ -1,7 +1,7 @@
-package Windows;
+package Windows.GeneralWindows;
 
-import Windows.CustomerScanCardWindow;
-import Windows.ManagerLoginWindow;
+import Windows.CustomerInterfaceWindows.CustomerScanCardWindow;
+import Windows.ManagerInterfaceWindows.ManagerLoginWindow;
 import com.formdev.flatlaf.FlatDarkLaf;
 
 import java.awt.*;

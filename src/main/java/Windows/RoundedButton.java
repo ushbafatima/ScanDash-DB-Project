@@ -9,7 +9,7 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.RoundRectangle2D;
 
 
-class RoundedButton extends JButton {
+public class RoundedButton extends JButton {
     private static final long serialVersionUID = 1L;
 
     public RoundedButton(String label) {

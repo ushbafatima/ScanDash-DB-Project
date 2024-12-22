@@ -1,5 +1,7 @@
-package Windows;
+package Windows.CustomerInterfaceWindows;
 
+import Windows.GeneralWindows.FirstWindow;
+import Windows.RoundedButton;
 import com.formdev.flatlaf.FlatDarkLaf;
 
 import java.awt.*;
@@ -96,7 +98,7 @@ public class CustomerShoppingWindow extends JFrame {
         JButton displayCartbtn = new JButton("Display Cart");
         displayCartbtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //new ViewCartWindow().setVisible(true);
+                new ViewCartWindow().setVisible(true);
                 dispose();
             }
 
@@ -110,7 +112,7 @@ public class CustomerShoppingWindow extends JFrame {
         JButton scanProductbtn = new JButton("Scan Product");
         scanProductbtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //new ScanProductWindow("Customer").setVisible(true);
+                new ScanProductWindow().setVisible(true);
                 setVisible(false);
             }
         });

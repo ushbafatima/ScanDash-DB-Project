@@ -1,4 +1,4 @@
-package Windows;
+package Windows.CustomerInterfaceWindows;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -11,7 +11,10 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import UserManagement.Card;
+import UserManagement.CardManagement;
 import UserManagement.CustomerAuthentication;
+import Windows.AutoCloseMessageDialog;
+import Windows.GeneralWindows.FirstWindow;
 import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -121,7 +124,7 @@ public class CustomerCardPinWindow extends JFrame {
 
             Card card;
             try {
-                card = CustomerAuthentication.getCardFromDB(cardID); // Fetch card from database
+                card = CardManagement.getCardFromDB(cardID); // Fetch card from database
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }

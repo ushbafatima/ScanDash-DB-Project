@@ -25,6 +25,11 @@ public class Card {
         this.creditPoints = 0; // Default value
     }
 
+    // Constructor to initialize the Card object
+    public Card(String cardNumber) {
+        this.cardID = cardNumber;
+    }
+
     // Constructor to initialize cardID and isActive only
     public Card(String cardID, boolean isActive) {
         this.cardID = cardID;
