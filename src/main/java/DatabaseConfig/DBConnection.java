@@ -1,4 +1,4 @@
-package UserManagement;
+package DatabaseConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +11,7 @@ public class DBConnection {
     public static Connection connectToDB() {
         Properties properties = new Properties();
 
-        try (InputStream input = DBConnection.class.getClassLoader().getResourceAsStream("application.properties")) {
+        try (InputStream input = DatabaseConfig.DBConnection.class.getClassLoader().getResourceAsStream("application.properties")) {
             if (input == null) {
                 System.err.println("Unable to find application.properties");
                 return null;

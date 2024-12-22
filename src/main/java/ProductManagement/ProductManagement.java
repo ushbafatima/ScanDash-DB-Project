@@ -1,5 +1,7 @@
 package ProductManagement;
 
+import DatabaseConfig.DBConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -195,7 +197,6 @@ public class ProductManagement {
             return addElectronicsDescription((ElectronicsProduct) product);
         } else if (product instanceof ApplianceProduct) {
             return addApplianceDescription((ApplianceProduct) product);
-
         } else if (product instanceof PackagedProduct) {
             return addPackedGroceryDescription((PackagedProduct) product);
         } else if (product instanceof CosmeticsProduct) {

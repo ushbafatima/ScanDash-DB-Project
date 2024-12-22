@@ -6,7 +6,7 @@ import java.util.Map;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import UserManagement.DBConnection;
+import DatabaseConfig.DBConnection;
 
 public class CustomerCart {
     private static Map<Product, Integer> cart;
@@ -98,7 +98,7 @@ public class CustomerCart {
                     // Update inventory
                     updateInventoryStmt.setInt(1, quantity);
                     updateInventoryStmt.setInt(2, quantity);
-                    updateInventoryStmt.setString(3, product.getProductID());
+                    updateInventoryStmt.setString(3, product.getProdID());
                     updateInventoryStmt.executeUpdate();
                 }
 

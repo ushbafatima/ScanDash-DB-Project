@@ -14,9 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-import ProductManagement.DBConnection;
-import UserManagement.CardManagement;
-import UserManagement.CustomerManagement;
+import DatabaseConfig.DBConnection;
 import Windows.GeneralWindows.FirstWindow;
 import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.JLabel;

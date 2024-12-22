@@ -127,6 +127,7 @@ public class ViewCartWindow extends JFrame {
         if (tableModel.getRowCount()==0) {
             JOptionPane.showMessageDialog(null, "Your Cart is Empty", "Oops",
                     JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
         setLocationRelativeTo(null);
     }
@@ -154,8 +155,8 @@ public class ViewCartWindow extends JFrame {
         double total = itemPrice * quantity;
 
         Object[] rowData = {
-                product.getProductID(),
-                product.getProductName(),
+                product.getProdID(),
+                product.getName(),
                 String.format("%.2f", product.getPrice()),
                 quantity,
                 String.format("%.0f%%", product.getDiscount()),

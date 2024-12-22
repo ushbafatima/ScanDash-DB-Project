@@ -1,5 +1,7 @@
 package UserManagement;
 
+import CardManagement.Card;
+
 public class Customer {
     private String customerID;
     private String firstName;

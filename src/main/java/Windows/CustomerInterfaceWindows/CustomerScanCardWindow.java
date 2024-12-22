@@ -1,8 +1,8 @@
 package Windows.CustomerInterfaceWindows;
 
-import UserManagement.CardManagement;
+import CardManagement.CardManagement;
 import UserManagement.CustomerAuthentication;
-import UserManagement.Card;
+import CardManagement.Card;
 import Windows.GeneralWindows.FirstWindow;
 import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.*;
@@ -126,6 +126,8 @@ public class CustomerScanCardWindow extends JFrame {
         } catch (SQLException e) {
             showErrorAndRestart("Database Error: " + e.getMessage());
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -3,22 +3,17 @@ package Windows.CustomerInterfaceWindows;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import UserManagement.Card;
-import UserManagement.CardManagement;
+import DatabaseConfig.DBConnection;
+import CardManagement.Card;
+import CardManagement.CardManagement;
 import UserManagement.CustomerAuthentication;
 import Windows.AutoCloseMessageDialog;
 import Windows.GeneralWindows.FirstWindow;
 import com.formdev.flatlaf.FlatDarkLaf;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
@@ -54,6 +49,16 @@ public class CustomerCardPinWindow extends JFrame {
      * Create the frame.
      */
     public CustomerCardPinWindow(String cardID) {
+        // Start a thread to connect to the database when the window is launched
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // Connect to the database in the background
+                CardManagement.conn = DBConnection.connectToDB();  // Connect to DB
+            }
+        }).start();
+
+
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Prevent default close operation
         // Add a window listener to handle the window close event
         addWindowListener(new WindowAdapter() {
@@ -103,7 +108,7 @@ public class CustomerCardPinWindow extends JFrame {
         PINLabel.setBounds(130, 150, 80, 13);
         contentPane.add(PINLabel);
 
-        PINField = new JTextField();
+        PINField = new JPasswordField();
         PINField.setBounds(200, 150, 180, 19);
         contentPane.add(PINField);
         PINField.setColumns(10);
@@ -126,6 +131,8 @@ public class CustomerCardPinWindow extends JFrame {
             try {
                 card = CardManagement.getCardFromDB(cardID); // Fetch card from database
             } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
 

@@ -1,10 +1,10 @@
 package Windows.ManagerInterfaceWindows;
 
-import ProductManagement.DBConnection;
-import UserManagement.CardManagement;
+import DatabaseConfig.DBConnection;
+import CardManagement.CardManagement;
 import UserManagement.CustomerManagement;
 import UserManagement.Customer;
-import Windows.CustomerInterfaceWindows.ViewCartWindow;
+import Windows.GeneralWindows.FirstWindow;
 import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
-import static UserManagement.CardManagement.setCardCredentials;
+import static CardManagement.CardManagement.setCardCredentials;
 import static UserManagement.CustomerManagement.addCustomerToDB;
 
 public class ManagerTasksWindow extends JFrame {
@@ -137,15 +137,26 @@ public class ManagerTasksWindow extends JFrame {
         removeUserBtn.addActionListener(e -> loadRemoveCustomerDetails());
 
         manageInventoryBtn.addActionListener(e -> {
-            //ManageInventoryWindow manageInventoryWindow = new ManageInventoryWindow();
-            //manageInventoryWindow.setVisible(true); // Show the Manage Inventory window
+            ManageInventoryWindow manageInventoryWindow = new ManageInventoryWindow();
+            manageInventoryWindow.setVisible(true); // Show the Manage Inventory window
             dispose();
         });
 
         logoutButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Logout Successful");
-            System.exit(0);
+            int confirm = JOptionPane.showConfirmDialog(
+                    this,
+                    "Are you sure you want to log out?",
+                    "Confirm Logout",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                dispose();
+                new FirstWindow().setVisible(true);
+            }
         });
+
 
         // Resize behavior
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -296,7 +307,6 @@ public class ManagerTasksWindow extends JFrame {
                 firstNameField.setText("");
                 lastNameField.setText("");
                 contactField.setText("");
-                updateCardNumbersBox();
 
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to add customer.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -360,7 +370,13 @@ public class ManagerTasksWindow extends JFrame {
                 return;
             } else {
                 JOptionPane.showMessageDialog(pinDialog, "PIN successfully set!");
-                setCardCredentials(cardID, confirmPin);
+                try {
+                    setCardCredentials(cardID, confirmPin);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                updateCardNumbersBox();
                 pinDialog.dispose();
             }
         });
@@ -412,8 +428,11 @@ public class ManagerTasksWindow extends JFrame {
 
             // Customer found, you can proceed with the removal
             int confirm = JOptionPane.showConfirmDialog(detailsPanel,
-                    "Are you sure you want to remove customer: " + customer.getFirstName() + " " + customer.getLastName() + "?",
-                    "Confirm Removal", JOptionPane.YES_NO_OPTION);
+                    "Are you sure you want to remove customer:\n "
+                            + customer.getFirstName() + " " + customer.getLastName()
+                            + "?\nCard Number: " + customer.getCard().getCardID(),
+                    "Confirm Removal",
+                    JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
                 boolean success = CustomerManagement.removeCustomerFromDB(customer);
