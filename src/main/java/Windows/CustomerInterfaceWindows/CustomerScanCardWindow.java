@@ -1,7 +1,9 @@
-package Windows;
+package Windows.CustomerInterfaceWindows;
 
+import UserManagement.CardManagement;
 import UserManagement.CustomerAuthentication;
 import UserManagement.Card;
+import Windows.GeneralWindows.FirstWindow;
 import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.*;
 import java.awt.*;
@@ -102,7 +104,7 @@ public class CustomerScanCardWindow extends JFrame {
         }
 
         try {
-            Card card = CustomerAuthentication.getCardFromDB(cardID); // Fetch card from database
+            Card card = CardManagement.getCardFromDB(cardID); // Fetch card from database
 
             if (!CustomerAuthentication.cardFound(card)) {
                 dispose();

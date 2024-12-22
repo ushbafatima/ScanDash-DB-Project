@@ -16,6 +16,14 @@ public class Customer {
         this.card = card;
     }
 
+    // Constructor to initialize Customer object with partial details
+    public Customer(String firstName, String lastName, String phoneNumber, String cardNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.card = new Card(cardNumber); // Create a Card object with the card number
+    }
+
     // Getters and Setters
     public String getCustomerID() {
         return customerID;

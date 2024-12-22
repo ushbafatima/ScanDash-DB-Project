@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ManagerAuthentication {
-
+    public static Connection conn;
     // Method to fetch manager details from the database
     public static Manager getManagerFromDB(String username) throws SQLException {
-        Connection conn = DBConnection.connectToDB();
+
         String query = "SELECT ManagerID, Username, Password FROM ManagerCredentials WHERE Username = ?";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, username); // Set the entered username

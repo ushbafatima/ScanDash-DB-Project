@@ -1,4 +1,4 @@
-package Windows;
+package Windows.GeneralWindows;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 
 import javax.swing.SwingConstants;
 import javax.swing.JProgressBar;
+
 import com.formdev.flatlaf.*;
 import javax.swing.UIManager;
 

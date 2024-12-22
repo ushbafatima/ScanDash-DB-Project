@@ -127,8 +127,6 @@ class FreshGrocery extends Grocery {
     public FreshGrocery(String productID, String productName, double price, int quantity, double discount, String category, String groceryCategory, String expiryDate, String nutritionalInfo, double weight, boolean organic, String type) {
         super(productID, productName, price, quantity, discount, category, groceryCategory, expiryDate, nutritionalInfo);
         this.weight = weight;
-        this.organic = organic;
-        this.type = type;
     }
 
     // Getters and setters

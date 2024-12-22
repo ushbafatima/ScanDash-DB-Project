@@ -1,4 +1,4 @@
-package Windows;
+package Windows.ManagerInterfaceWindows;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -13,6 +13,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import ProductManagement.DBConnection;
+import UserManagement.CardManagement;
+import UserManagement.CustomerManagement;
+import Windows.GeneralWindows.FirstWindow;
 import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,6 +31,8 @@ import UserManagement.Manager;
 import UserManagement.ManagerAuthentication;
 
 import java.sql.SQLException;
+
+import static Windows.AutoCloseMessageDialog.showMessage;
 
 public class ManagerLoginWindow extends JFrame {
 
@@ -52,6 +59,15 @@ public class ManagerLoginWindow extends JFrame {
     }
 
     public ManagerLoginWindow() {
+        // Start a thread to connect to the database when the window is launched
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // Connect to the database in the background
+                ManagerAuthentication.conn = DBConnection.connectToDB();  // Connect to DB
+            }
+        }).start();
+
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         addWindowListener(new WindowAdapter() {
@@ -159,9 +175,9 @@ public class ManagerLoginWindow extends JFrame {
 
                     // Authenticate the manager
                     if (ManagerAuthentication.authenticateManager(manager,username, password)) {
-                        JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        showMessage(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE, 1000);  // 2000ms (2 seconds)
                         setVisible(false);
-                        //new ManagerTasksWindow().setVisible(true);
+                        new ManagerTasksWindow().setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Invalid Password", "Error", JOptionPane.ERROR_MESSAGE);
                         passwordField.setText("");
