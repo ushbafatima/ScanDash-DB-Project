@@ -1,4 +1,4 @@
-package User;
+package UserManagement;
 
 import com.fazecast.jSerialComm.SerialPort;
 

@@ -1,4 +1,4 @@
-package User;
+package UserManagement;
 
 public class Manager {
     private int managerID;

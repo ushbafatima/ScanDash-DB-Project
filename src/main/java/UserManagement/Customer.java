@@ -1,4 +1,4 @@
-package User;
+package UserManagement;
 
 public class Customer {
     private String customerID;
