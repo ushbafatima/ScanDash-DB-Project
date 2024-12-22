@@ -21,7 +21,7 @@ public class ProductManagement {
     public static Product findProductinInventory(String ID) {
         Product product = null;
         try {
-            String query = "SELECT * FROM inventory WHERE prodID = ?";
+            String query = "SELECT * FROM inventory WHERE \"productID\" = ?";
             pst = con.prepareStatement(query);
             pst.setString(1, ID);
             rs = pst.executeQuery();
@@ -53,7 +53,7 @@ public class ProductManagement {
             }
 
             // Prepare SQL statement to insert the product
-            String query = "INSERT INTO inventory (prodID, productName, price, quantity, discount, category) VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO inventory (\"productID\", \"productName\", price, quantity, discount, category) VALUES (?, ?, ?, ?, ?, ?)";
             pst = con.prepareStatement(query);
             pst.setString(1, product.getProdID());
             pst.setString(2, product.getName());
@@ -83,7 +83,7 @@ public class ProductManagement {
 
         try {
             // Prepare SQL statement to delete the product
-            String query = "DELETE FROM inventory WHERE prodID = ?";
+            String query = "DELETE FROM inventory WHERE \"productID\" = ?";
             pst = con.prepareStatement(query);
             pst.setString(1, product.getProdID());
 
@@ -112,7 +112,7 @@ public class ProductManagement {
 
         try {
             // Prepare SQL statement to update the product
-            String query = "UPDATE inventory SET productName = ?, price = ?, quantity = ?, discount = ?, category = ? WHERE prodID = ?";
+            String query = "UPDATE inventory SET \"productName\" = ?, price = ?, quantity = ?, discount = ?, category = ? WHERE \"productID\" = ?";
             pst = con.prepareStatement(query);
             pst.setString(1, product.getName());
             pst.setDouble(2, product.getPrice());
@@ -213,8 +213,8 @@ public class ProductManagement {
         try {
             // Prepare SQL statement to insert data into grocery_items table or update if
             // the product already exists
-            String query = "INSERT INTO grocery (prodID, expiryDate, manufacture_date) " + "VALUES (?, ?, ?) "
-                    + "ON DUPLICATE KEY UPDATE expiry_date = VALUES(expiry_date), manufacture_date = VALUES(manufacture_date)";
+            String query = "INSERT INTO grocery (\"productID\", \"category\", \"expiryDate\", \"nutritionalInfo\") " + "VALUES (?, ?, ?) "
+                    + "ON DUPLICATE KEY UPDATE \"expiryDate\" = VALUES(\"expiryDate\"), \"nutritionalInfo\" = VALUES(\"nutritionalInfo\")";
 
             pst = con.prepareStatement(query);
             pst.setString(1, groceryProduct.getProdID());
@@ -240,32 +240,47 @@ public class ProductManagement {
         }
     }
 
+    private static Boolean addGroceryDescription(Grocery groceryProduct) {
+        try {
+            // Prepare SQL statement to insert data into grocery table or update if the product already exists
+            String query = "INSERT INTO grocery (\"productID\", \"category\", \"expiryDate\", \"nutritionalInfo\") " +
+                    "VALUES (?, ?, ?, ?) " +
+                    "ON CONFLICT (\"productID\") DO UPDATE SET " +
+                    "\"expiryDate\" = EXCLUDED.\"expiryDate\", \"nutritionalInfo\" = EXCLUDED.\"nutritionalInfo\"";
+
+            pst = con.prepareStatement(query);
+            pst.setString(1, groceryProduct.getProdID());
+            pst.setString(2, groceryProduct.getCategory());
+            pst.setString(3, groceryProduct.getExpiryDate());
+            pst.setString(4, groceryProduct.getNutritionalInfo());
+
+            int rowsAffected = pst.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            closeResources();
+        }
+    }
+
     private static Boolean addElectronicsDescription(ElectronicsProduct electronicsProduct) {
         try {
-            // Prepare SQL statement to update warranty period and model for an electronics
-            // product
-            String query = "INSERT INTO electronics (prod_id, warranty_period, model) " + "VALUES (?, ?, ?) "
-                    + "ON DUPLICATE KEY UPDATE warranty_period = VALUES(warranty_period), model = VALUES(model)";
+            String query = "INSERT INTO electronics (\"productID\", \"warrantyPeriod\", \"model\") " +
+                    "VALUES (?, ?, ?) " +
+                    "ON CONFLICT (\"productID\") DO UPDATE SET " +
+                    "\"warrantyPeriod\" = EXCLUDED.\"warrantyPeriod\", \"model\" = EXCLUDED.\"model\"";
 
             pst = con.prepareStatement(query);
             pst.setString(1, electronicsProduct.getProdID());
             pst.setString(2, electronicsProduct.getWarrantyPeriod());
             pst.setString(3, electronicsProduct.getModel());
 
-            // Execute the SQL statement to update the database
             int rowsAffected = pst.executeUpdate();
-
-            // Check if at least one row was affected (insert or update successful)
-            if (rowsAffected > 0) {
-                System.out.println("Operation successful");
-                return true; // Insert or update successful
-            } else {
-                System.out.println("Operation failed");
-                return false; // Insert or update failed
-            }
+            return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // Error occurred during insert or update
+            return false;
         } finally {
             closeResources();
         }
@@ -273,8 +288,10 @@ public class ProductManagement {
 
     private static Boolean addApplianceDescription(ApplianceProduct applianceProduct) {
         try {
-            String query = "INSERT INTO appliances (prod_id, capacity, efficiency_rate) " + "VALUES (?, ?, ?) "
-                    + "ON DUPLICATE KEY UPDATE capacity = VALUES(capacity), efficiency_rate = VALUES(efficiency_rate)";
+            String query = "INSERT INTO appliances (\"productID\", \"capacity\", \"efficiencyRate\") " +
+                    "VALUES (?, ?, ?) " +
+                    "ON CONFLICT (\"productID\") DO UPDATE SET " +
+                    "\"capacity\" = EXCLUDED.\"capacity\", \"efficiencyRate\" = EXCLUDED.\"efficiencyRate\"";
 
             pst = con.prepareStatement(query);
             pst.setString(1, applianceProduct.getProdID());
@@ -291,12 +308,12 @@ public class ProductManagement {
         }
     }
 
-
     private static Boolean addPackedGroceryDescription(PackagedProduct packagedProduct) {
         try {
-            String query = "INSERT INTO packed_grocery_items (prod_id, expiry_date, manufacture_date, brand) "
-                    + "VALUES (?, ?, ?, ?) " + "ON DUPLICATE KEY UPDATE expiry_date = VALUES(expiry_date), "
-                    + "manufacture_date = VALUES(manufacture_date), " + "brand = VALUES(brand)";
+            String query = "INSERT INTO \"packagedGrocery\" (\"productID\", \"brand\") " +
+                    "VALUES (?, ?, ?, ?) " +
+                    "ON CONFLICT (\"productID\") DO UPDATE SET " +
+                    "\"brand\" = EXCLUDED.\"brand\"";
 
             pst = con.prepareStatement(query);
             pst.setString(1, packagedProduct.getProdID());
@@ -316,8 +333,11 @@ public class ProductManagement {
 
     private static Boolean addCosmeticsDescription(CosmeticsProduct cosmeticsProduct) {
         try {
-            String query = "INSERT INTO cosmetics (prod_id, ingredients, brand) " + "VALUES (?, ?, ?) "
-                    + "ON DUPLICATE KEY UPDATE ingredients = VALUES(ingredients), " + "brand = VALUES(brand)";
+            String query = "INSERT INTO cosmetics (\"productID\", \"ingredients\", \"brand\") " +
+                    "VALUES (?, ?, ?) " +
+                    "ON CONFLICT (\"productID\") DO UPDATE SET " +
+                    "\"ingredients\" = EXCLUDED.\"ingredients\", " +
+                    "\"brand\" = EXCLUDED.\"brand\"";
 
             pst = con.prepareStatement(query);
             pst.setString(1, cosmeticsProduct.getProdID());
@@ -334,12 +354,14 @@ public class ProductManagement {
         }
     }
 
-
     private static Boolean addFreshGroceryDescription(FreshGrocery freshGrocery) {
         try {
-            String query = "INSERT INTO fresh_grocery (prod_id, expiry_date, manufacture_date, weight) "
-                    + "VALUES (?, ?, ?, ?) " + "ON DUPLICATE KEY UPDATE expiry_date = VALUES(expiry_date), "
-                    + "manufacture_date = VALUES(manufacture_date), " + "weight = VALUES(weight)";
+            String query = "INSERT INTO \"freshGrocery\" (\"productID\", \"expiryDate\", \"manufactureDate\", \"weight\") " +
+                    "VALUES (?, ?, ?, ?) " +
+                    "ON CONFLICT (\"productID\") DO UPDATE SET " +
+                    "\"expiryDate\" = EXCLUDED.\"expiryDate\", " +
+                    "\"manufactureDate\" = EXCLUDED.\"manufactureDate\", " +
+                    "\"weight\" = EXCLUDED.\"weight\"";
 
             pst = con.prepareStatement(query);
             pst.setString(1, freshGrocery.getProdID());
