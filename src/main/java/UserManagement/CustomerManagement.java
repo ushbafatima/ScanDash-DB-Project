@@ -1,6 +1,8 @@
 package UserManagement;
 
-import ProductManagement.DBConnection;
+import CardManagement.CardManagement;
+import CardManagement.Card;
+
 
 import java.sql.*;
 
@@ -25,6 +27,7 @@ public class CustomerManagement {
                 String lastName = rs.getString("lastName");
                 String phone = rs.getString("phone");
                 String cardID = rs.getString("cardID");
+                System.out.println(cardID);
 
                 // Create Card object for the customer
                 Card card = CardManagement.getCardFromDB(cardID);  // Assume we have a method to get Card details by cardID
@@ -34,6 +37,8 @@ public class CustomerManagement {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         } finally {
             // Close resources to prevent memory leaks
             closeResources(pst, rs);

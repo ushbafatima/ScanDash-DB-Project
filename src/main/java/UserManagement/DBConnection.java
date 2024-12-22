@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBConnection {
     // Method to establish the database connection
-    static Connection connectToDB() {
+    public static Connection connectToDB() {
         // Connection details
         String url = "jdbc:postgresql://aws-0-ap-south-1.pooler.supabase.com:5432/postgres";
         String user = "postgres.hcsvpkykasdfmmflldby";

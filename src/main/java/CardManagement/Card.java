@@ -1,4 +1,4 @@
-package UserManagement;
+package CardManagement;
 
 public class Card {
     private String cardID;

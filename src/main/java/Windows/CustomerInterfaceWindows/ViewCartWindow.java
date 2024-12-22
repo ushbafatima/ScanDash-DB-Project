@@ -152,6 +152,7 @@ public class ViewCartWindow extends JFrame {
         if (tableModel.getRowCount()==0) {
             JOptionPane.showMessageDialog(null, "Your Cart is Empty", "Oops",
                     JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
         setLocationRelativeTo(null);
     }

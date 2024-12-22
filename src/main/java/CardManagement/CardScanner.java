@@ -1,4 +1,4 @@
-package UserManagement;
+package CardManagement;
 
 import com.fazecast.jSerialComm.SerialPort;
 
@@ -19,6 +19,9 @@ public class CardScanner {
             comPort.setNumStopBits(SerialPort.ONE_STOP_BIT);
             comPort.setParity(SerialPort.NO_PARITY);
         }
+
+        // Send a signal to enable the card scanner
+        comPort.writeBytes("true\n".getBytes(), "true\n".getBytes().length);
 
         StringBuilder messageBuffer = new StringBuilder();
         String cardUID = null;
