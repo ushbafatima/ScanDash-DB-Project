@@ -47,5 +47,4 @@ public class ProductScanner {
 
         return cardUID;
     }
-
 }

@@ -9,13 +9,13 @@ import java.sql.SQLException;
 import UserManagement.DBConnection;
 
 public class CustomerCart {
-    private Map<Product, Integer> cart;
+    private static Map<Product, Integer> cart;
 
     public CustomerCart() {
-        this.cart = new HashMap<>();
+        cart = new HashMap<>();
     }
 
-    public boolean addToCart(Product product, int quantity) {
+    public static boolean addToCart(Product product, int quantity) {
         if (product == null || quantity <= 0) {
             return false;
         }
@@ -30,7 +30,7 @@ public class CustomerCart {
         return true;
     }
 
-    public boolean removeFromCart(Product product, int quantity) {
+    public static boolean removeFromCart(Product product, int quantity) {
         if (product == null || !cart.containsKey(product)) {
             return false;
         }
@@ -44,15 +44,15 @@ public class CustomerCart {
         return true;
     }
 
-    public void clearCart() {
+    public static void clearCart() {
         cart.clear();
     }
 
-    public Map<Product, Integer> getCart() {
+    public static Map<Product, Integer> getCart() {
         return new HashMap<>(cart);
     }
 
-    public double calculateBill() {
+    public static double calculateBill() {
         double total = 0;
         for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
             Product product = entry.getKey();
@@ -63,7 +63,7 @@ public class CustomerCart {
         return total;
     }
 
-    public boolean checkout() {
+    public static boolean checkout() {
         if (cart.isEmpty()) {
             return false;
         }
@@ -128,11 +128,11 @@ public class CustomerCart {
         }
     }
 
-    public int getCurrentQuantityInCart(Product product) {
+    public static int getCurrentQuantityInCart(Product product) {
         return cart.getOrDefault(product, 0);
     }
 
-    public boolean isProductInCart(Product product) {
+    public static boolean isProductInCart(Product product) {
         return cart.containsKey(product);
     }
 }

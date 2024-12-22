@@ -1,6 +1,8 @@
-package Windows;
+package Windows.CustomerInterfaceWindows;
 
+import ProductManagement.Product;
 import com.formdev.flatlaf.FlatDarkLaf;
+import CartManagement.CustomerCart;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -10,8 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.math.BigDecimal;
-import java.sql.*;
+import java.util.Map;
 
 public class ViewCartWindow extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -52,7 +53,7 @@ public class ViewCartWindow extends JFrame {
                 // If the response is NO_OPTION, do nothing and stay in the current window
             }
         });
-        setBounds(500, 200, 500, 400);
+        setBounds(500, 200, 800, 600);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
         setTitle("View Cart");
@@ -77,7 +78,7 @@ public class ViewCartWindow extends JFrame {
         topPanel.add(titleLabel);
 
         // Create the table model with column names
-        String[] columnNames = {"Product ID", "Product Name", "Product Cost", "Product Quantity", "Product Discount"};
+        String[] columnNames = {"Product ID", "Product Name", "Price", "Quantity", "Discount", "Total"};
         tableModel = new DefaultTableModel(columnNames, 0);
         table = new JTable(tableModel);
         table.setFillsViewportHeight(true);
@@ -102,21 +103,7 @@ public class ViewCartWindow extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 0;
         buttonPanel.add(btnClearCart, gbc);
-        btnClearCart.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int response = JOptionPane.showConfirmDialog(
-                        ViewCartWindow.this,
-                        "Are you sure you wish to clear the cart?",
-                        "Clear Cart Confirmation",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.WARNING_MESSAGE
-                );
-                if (response == JOptionPane.YES_OPTION) {
-                    CartManagement.clearCart();
-                    clearCart();
-                }
-            }
-        });
+        btnClearCart.addActionListener(e -> handleClearCart());
 
         JButton btnCheckout = new JButton("Checkout");
         btnCheckout.setBackground(new Color(0, 180, 0));
@@ -124,13 +111,7 @@ public class ViewCartWindow extends JFrame {
         gbc.gridx = 1;
         gbc.gridy = 0;
         buttonPanel.add(btnCheckout, gbc);
-        btnCheckout.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-                CustomerBillWindow billWindow = new CustomerBillWindow();
-                billWindow.setVisible(true);
-                dispose();            }
-        });
+        btnCheckout.addActionListener(e -> handleCheckout());
 
         JButton btnBackToShopping = new JButton("Back to Shopping");
         btnBackToShopping.addActionListener(new ActionListener() {
@@ -147,45 +128,84 @@ public class ViewCartWindow extends JFrame {
         buttonPanel.add(btnBackToShopping, gbc);
 
         setLocation(450, 100);
-        // Fetch and display the data from the database
-        //fetchDataFromDatabase();
+        loadCartData();
+
         if (tableModel.getRowCount()==0) {
             JOptionPane.showMessageDialog(null, "Your Cart is Empty", "Oops",
                     JOptionPane.INFORMATION_MESSAGE);
         }
         setLocationRelativeTo(null);
     }
-    /*private void fetchDataFromDatabase() {
-        final String DB_NAME = "user";
-        final String DB_URL = "jdbc:mysql://localhost:3306/" + DB_NAME;
-        final String USERNAME = "root";
-        final String PASSWORD = "MySQL@2773778";
-        String sql = "SELECT prod_id, prod_name, price, quantity, discount FROM cart.cart_items"; // Corrected SQL query
 
-        try (Connection connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD)) {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            try {
-                ResultSetMetaData metaData = rs.getMetaData();
+    private void loadCartData() {
+        tableModel.setRowCount(0);
+        Map<Product, Integer> cartItems = CustomerCart.getCart();
 
-                while (rs.next()) {
-                    Object[] rowData = new Object[metaData.getColumnCount()];
-                    for (int i = 0; i < metaData.getColumnCount(); i++) {
-                        rowData[i] = rs.getObject(i + 1);
-                    }
-                    tableModel.addRow(rowData);
-                }
-
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            } finally {
-                statement.close();
-                rs.close();
-            }
-        } catch (SQLException e1) {
-            e1.printStackTrace();
+        for (Map.Entry<Product, Integer> entry : cartItems.entrySet()) {
+            Object[] rowData = getObjects(entry);
+            tableModel.addRow(rowData);
         }
-    }*/
+
+        if (tableModel.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Your Cart is Empty", "Oops",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private static Object[] getObjects(Map.Entry<Product, Integer> entry) {
+        Product product = entry.getKey();
+        int quantity = entry.getValue();
+        double itemPrice = product.getPrice() * (1 - product.getDiscount()/100);
+        double total = itemPrice * quantity;
+
+        Object[] rowData = {
+                product.getProductID(),
+                product.getProductName(),
+                String.format("%.2f", product.getPrice()),
+                quantity,
+                String.format("%.0f%%", product.getDiscount()),
+                String.format("%.2f", total)
+        };
+        return rowData;
+    }
+
+    private void handleClearCart() {
+        int response = JOptionPane.showConfirmDialog(
+                ViewCartWindow.this,
+                "Are you sure you wish to clear the cart?",
+                "Clear Cart Confirmation",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+        if (response == JOptionPane.YES_OPTION) {
+            CustomerCart.clearCart();
+            clearCart();
+        }
+    }
+
+    private void handleCheckout() {
+        if (CustomerCart.checkout()) {
+            JOptionPane.showMessageDialog(ViewCartWindow.this,
+                    "Checkout successful!",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+            CustomerBillWindow billWindow = new CustomerBillWindow();
+            billWindow.setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(ViewCartWindow.this,
+                    "Checkout failed. Please try again.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void handleBackToShopping() {
+        new CustomerShoppingWindow().setVisible(true);
+        dispose();
+    }
+
 
     private void clearCart() {
         tableModel.setRowCount(0); // Clear all rows in the table
