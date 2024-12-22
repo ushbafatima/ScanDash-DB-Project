@@ -3,10 +3,11 @@ package CartManagement;
 import ProductManagement.Product;
 import java.util.HashMap;
 import java.util.Map;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import DatabaseConfig.DBConnection;
+import ProductManagement.ProductManagement;
+
+import java.sql.Connect
+import java.sql.SQLException;
 
 public class CustomerCart {
     private static Map<Product, Integer> cart;
@@ -20,14 +21,18 @@ public class CustomerCart {
             return false;
         }
 
-        // Check if adding this quantity exceeds available inventory
-        int currentQuantity = getCurrentQuantityInCart(product);
-        if (currentQuantity + quantity > product.getQuantity()) {
+        // Check if product exists in inventory and is available
+        Product inventoryProduct = ProductManagement.findProductInInventory(product.getProdID());
+        if (inventoryProduct == null || quantity > inventoryProduct.getQuantity()) {
             return false;
         }
 
-        cart.put(product, cart.getOrDefault(product, 0) + quantity);
-        return true;
+        // Update cart and reduce inventory quantity
+        int currentQuantity = getCurrentQuantityInCart(product);
+        cart.put(product, currentQuantity + quantity);
+
+        inventoryProduct.setQuantity(inventoryProduct.getQuantity() - quantity);
+        return ProductManagement.updateProductInDB(inventoryProduct);
     }
 
     public static boolean removeFromCart(Product product, int quantity) {
@@ -36,15 +41,37 @@ public class CustomerCart {
         }
 
         int currentQuantity = cart.get(product);
-        if (quantity >= currentQuantity) {
+        if (quantity > currentQuantity) {
+            return false;
+        }
+
+        // Update cart and return the quantity back to inventory
+        if (quantity == currentQuantity) {
             cart.remove(product);
         } else {
             cart.put(product, currentQuantity - quantity);
         }
-        return true;
+
+        Product inventoryProduct = ProductManagement.findProductInInventory(product.getProdID());
+        if (inventoryProduct != null) {
+            inventoryProduct.setQuantity(inventoryProduct.getQuantity() + quantity);
+            return ProductManagement.updateProductInDB(inventoryProduct);
+        }
+        return false;
     }
 
     public static void clearCart() {
+        for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
+            Product product = entry.getKey();
+            int quantity = entry.getValue();
+
+            // Return all items in cart to inventory
+            Product inventoryProduct = ProductManagement.findProductInInventory(product.getProdID());
+            if (inventoryProduct != null) {
+                inventoryProduct.setQuantity(inventoryProduct.getQuantity() + quantity);
+                ProductManagement.updateProductInDB(inventoryProduct);
+            }
+        }
         cart.clear();
     }
 
@@ -57,7 +84,7 @@ public class CustomerCart {
         for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
             Product product = entry.getKey();
             int quantity = entry.getValue();
-            double itemPrice = product.getPrice() * (1 - product.getDiscount()/100);
+            double itemPrice = product.getPrice() * (1 - product.getDiscount() / 100);
             total += itemPrice * quantity;
         }
         return total;
@@ -68,48 +95,32 @@ public class CustomerCart {
             return false;
         }
 
-        Connection conn = DBConnection.connectToDB();
-        if (conn == null) {
-            return false;
-        }
+        try (Connection conn = DBConnection.connectToDB()) {
+            if (conn == null) {
+                return false;
+            }
 
-        try {
             conn.setAutoCommit(false);
 
-            // Update inventory and delete if quantity becomes 0
-            String updateInventorySql =
-                    "UPDATE inventory " +
-                            "SET quantity = CASE " +
-                            "    WHEN quantity - ? <= 0 THEN 0 " +
-                            "    ELSE quantity - ? " +
-                            "END " +
-                            "WHERE \"productID\" = ?::uuid";
-
-            String deleteInventorySql =
-                    "DELETE FROM inventory WHERE quantity = 0";
-
-            try (PreparedStatement updateInventoryStmt = conn.prepareStatement(updateInventorySql);
-                 PreparedStatement deleteInventoryStmt = conn.prepareStatement(deleteInventorySql)) {
-
+            try {
+                // Deduct final quantities from inventory
                 for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
                     Product product = entry.getKey();
                     int quantity = entry.getValue();
 
-                    // Update inventory
-                    updateInventoryStmt.setInt(1, quantity);
-                    updateInventoryStmt.setInt(2, quantity);
-                    updateInventoryStmt.setString(3, product.getProdID());
-                    updateInventoryStmt.executeUpdate();
+                    Product inventoryProduct = ProductManagement.findProductInInventory(product.getProdID());
+                    if (inventoryProduct != null) {
+                        int remainingQuantity = inventoryProduct.getQuantity() - quantity;
+                        inventoryProduct.setQuantity(remainingQuantity);
+                        ProductManagement.updateProductInDB(inventoryProduct);
+                    }
                 }
 
-                // Delete products with zero quantity
-                deleteInventoryStmt.executeUpdate();
-
                 conn.commit();
-                clearCart();
+                clearCart(); // Clear the cart after successful checkout
                 return true;
 
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 conn.rollback();
                 e.printStackTrace();
                 return false;
@@ -118,13 +129,6 @@ public class CustomerCart {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                conn.setAutoCommit(true);
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 

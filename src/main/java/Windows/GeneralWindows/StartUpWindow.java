@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.Serial;
 
 import javax.swing.SwingConstants;
 import javax.swing.JProgressBar;
@@ -15,8 +16,8 @@ import com.formdev.flatlaf.*;
 import javax.swing.UIManager;
 
 public class StartUpWindow extends javax.swing.JFrame {
+    @Serial
     private static final long serialVersionUID = 1L;
-    private JPanel contentPane;
     private static JProgressBar progressBar;
 
     public StartUpWindow() {
@@ -27,7 +28,7 @@ public class StartUpWindow extends javax.swing.JFrame {
         int y = (screenSize.height - this.getHeight()) / 2;
         setLocation(x, y);
 
-        contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);

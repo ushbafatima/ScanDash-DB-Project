@@ -5,7 +5,6 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -749,7 +748,7 @@ public class ManageInventoryWindow extends JFrame {
 
         if (expiryDate != null && manufactureDate != null) {
             product.setExpiryDate(expiryDate.format(formatter));
-            product.setManufactureDate(manufactureDate.format(formatter));
+            product.setNutritionalInfo(manufactureDate.format(formatter));
         }
     }
 
@@ -831,7 +830,7 @@ public class ManageInventoryWindow extends JFrame {
 
         if (expiryDate != null && manufactureDate != null) {
             product.setExpiryDate(expiryDate.format(formatter));
-            product.setManufactureDate(manufactureDate.format(formatter));
+            product.setNutritionalInfo(manufactureDate.format(formatter));
         }
 
         product.setWeight(Double.parseDouble(weight) + " " + weightUnit);
@@ -899,7 +898,7 @@ public class ManageInventoryWindow extends JFrame {
 
         if (expiryDate != null && manufactureDate != null) {
             product.setExpiryDate(expiryDate.format(formatter));
-            product.setManufactureDate(manufactureDate.format(formatter));
+            product.setNutritionalInfo(manufactureDate.format(formatter));
         }
         product.setBrand(brand);
     }

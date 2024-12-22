@@ -287,7 +287,9 @@ public class ProductManagement {
 
             pst = con.prepareStatement(query);
             pst.setString(1, packagedProduct.getProdID());
-            pst.setString(2, packagedProduct.getBrand());
+            pst.setString(2, packagedProduct.getExpiryDate());
+            pst.setString(3, packagedProduct.getNutritionalInfo());
+            pst.setString(4, packagedProduct.getBrand());
 
             int rowsAffected = pst.executeUpdate();
             return rowsAffected > 0;

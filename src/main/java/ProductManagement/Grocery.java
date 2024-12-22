@@ -3,13 +3,13 @@ package ProductManagement;
 // Grocery class (subclass of Product)
 public class Grocery extends Product {
     private String expiryDate;
-    private String manufactureDate;
+    private String nutritionalInfo;
 
     // Constructor
-    public Grocery(String name, String prodID, double price, int quantity, double discount, String expiryDate, String manufactureDate) {
+    public Grocery(String name, String prodID, double price, int quantity, double discount, String expiryDate, String nutritionalInfo) {
         super(name, prodID, price, quantity, discount, "Grocery");
         this.expiryDate = expiryDate;
-        this.manufactureDate = manufactureDate;
+        this.nutritionalInfo = nutritionalInfo;
     }
 
     public Grocery() {
@@ -24,12 +24,12 @@ public class Grocery extends Product {
         this.expiryDate = expiryDate;
     }
 
-    public String getManufactureDate() {
-        return manufactureDate;
+    public String getNutritionalInfo() {
+        return nutritionalInfo;
     }
 
-    public void setManufactureDate(String manufactureDate) {
-        this.manufactureDate = manufactureDate;
+    public void setNutritionalInfo(String nutritionalInfo) {
+        this.nutritionalInfo = nutritionalInfo;
     }
 
 }
