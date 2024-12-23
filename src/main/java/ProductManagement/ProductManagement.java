@@ -213,16 +213,15 @@ public class ProductManagement {
     private static Boolean addGroceryDescription(Grocery groceryProduct) {
         try {
             // Prepare SQL statement to insert data into grocery table or update if the product already exists
-            String query = "INSERT INTO grocery (\"productID\", \"category\", \"expiryDate\", \"nutritionalInfo\") " +
-                    "VALUES (?, ?, ?, ?) " +
+            String query = "INSERT INTO grocery (\"productID\", \"expiryDate\", \"nutritionalInfo\") " +
+                    "VALUES (?, ?, ?) " +
                     "ON CONFLICT (\"productID\") DO UPDATE SET " +
                     "\"expiryDate\" = EXCLUDED.\"expiryDate\", \"nutritionalInfo\" = EXCLUDED.\"nutritionalInfo\"";
 
             pst = con.prepareStatement(query);
             pst.setString(1, groceryProduct.getProdID());
-            pst.setString(2, groceryProduct.getCategory());
-            pst.setString(3, groceryProduct.getExpiryDate());
-            pst.setString(4, groceryProduct.getNutritionalInfo());
+            pst.setString(2, groceryProduct.getExpiryDate());
+            pst.setString(3, groceryProduct.getNutritionalInfo());
 
             int rowsAffected = pst.executeUpdate();
             return rowsAffected > 0;

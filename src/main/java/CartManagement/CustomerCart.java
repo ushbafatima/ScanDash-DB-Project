@@ -1,12 +1,14 @@
 package CartManagement;
 
 import ProductManagement.Product;
-import java.util.HashMap;
-import java.util.Map;
 import DatabaseConfig.DBConnection;
 import ProductManagement.ProductManagement;
+import UserManagement.CurrentCustomerSession;
 
-import java.sql.Connect
+import java.util.HashMap;
+import java.util.Map;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class CustomerCart {
@@ -95,6 +97,12 @@ public class CustomerCart {
             return false;
         }
 
+        // Get current card ID from session
+        String cardId = CurrentCustomerSession.getInstance().getCurrentCardId();
+        if (cardId == null) {
+            return false;
+        }
+
         try (Connection conn = DBConnection.connectToDB()) {
             if (conn == null) {
                 return false;
@@ -103,6 +111,17 @@ public class CustomerCart {
             conn.setAutoCommit(false);
 
             try {
+                // Calculate total bill
+                double totalAmount = calculateBill();
+
+                // Insert sale record into salesPerCard
+                String insertSaleQuery = "INSERT INTO \"salesPerCard\" (\"cardid\", \"date\", \"totalAmount\") VALUES (?, CURRENT_DATE, ?)";
+                try (PreparedStatement pst = conn.prepareStatement(insertSaleQuery)) {
+                    pst.setString(1, cardId);
+                    pst.setDouble(2, totalAmount);
+                    pst.executeUpdate();
+                }
+
                 // Deduct final quantities from inventory
                 for (Map.Entry<Product, Integer> entry : cart.entrySet()) {
                     Product product = entry.getKey();

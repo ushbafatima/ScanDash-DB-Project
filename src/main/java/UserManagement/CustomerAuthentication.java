@@ -26,8 +26,12 @@ public class CustomerAuthentication {
     }
 
     public static Boolean authenticateCard(Card card, String cardID, String enteredPIN) {
-        return card.authenticate(cardID, enteredPIN);
+        boolean isAuthenticated = card.authenticate(cardID, enteredPIN);
+        if (isAuthenticated)
+            CurrentCustomerSession.getInstance().setCurrentCard(card);
+        return isAuthenticated;
     }
+
     public static Boolean isValidCardID(String cardID) {
         return cardID.length()==8;
     }
