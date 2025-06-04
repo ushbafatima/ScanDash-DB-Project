@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="ScanDash-DBProject:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ecde34c1-abd3-4c51-bb1b-3c8bfe438f71" name="Changes" comment="i dont know what happening">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SalesManagement/SalesChart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SalesManagement/SalesDataAccess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SalesManagement/TrackSalesWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/UserManagement/CurrentCustomerSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/CustomerBillWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/PayBillWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/ShopProductsWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/ViewProductWindows/ViewApplianceDescriptionWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/ViewProductWindows/ViewCosmeticsDescriptionWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/ViewProductWindows/ViewElectronicsDescriptionWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/ViewProductWindows/ViewFreshGroceryDescriptionWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/ViewProductWindows/ViewPackagedGroceryDescriptionWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/AddProductWindows/AddApplianceDescriptionWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/AddProductWindows/AddCosmeticsDescriptionWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/AddProductWindows/AddElectronicsDescriptionWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/AddProductWindows/AddFreshGroceryDescriptionWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/AddProductWindows/AddPackagedGroceryDescriptionWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/AddProductWindows/AddProductWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/RemoveProductWindows/RemoveProductWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/ScanProductWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/UpdateProductWindows/UpdateProductWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CartManagement/CustomerCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CartManagement/CustomerCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseConfig/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseConfig/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ProductManagement/ElectronicsProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProductManagement/ElectronicsProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ProductManagement/FreshGrocery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProductManagement/FreshGrocery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ProductManagement/Grocery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProductManagement/Grocery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ProductManagement/PackagedProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProductManagement/PackagedProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ProductManagement/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProductManagement/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ProductManagement/ProductManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProductManagement/ProductManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ProductManagement/ProductScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProductManagement/ProductScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UserManagement/CustomerAuthentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserManagement/CustomerAuthentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/CustomerScanCardWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/CustomerScanCardWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/CustomerShoppingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/CustomerShoppingWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/ScanProductWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/ScanProductWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/ViewCartWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Windows/CustomerInterfaceWindows/ViewCartWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Windows/GeneralWindows/StartUpWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Windows/GeneralWindows/StartUpWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/ManageInventoryWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/ManageInventoryWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/ManagerLoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/ManagerLoginWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/ManagerTasksWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Windows/ManagerInterfaceWindows/ManagerTasksWindow.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ushbafatima"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ushbafatima/ScanDash-DB-Project",
+    "accountId": "4ef9f641-263d-4a41-bdf9-9dd125c4412d"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2qWx2plQdnUOFegX5np1O8W7JkA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AddApplianceDescriptionWindow.executor": "Run",
+    "Application.AddCosmeticsDescriptionWindow.executor": "Run",
+    "Application.AddElectronicsDescriptionWindow.executor": "Run",
+    "Application.AddFreshGroceryDescriptionWindow.executor": "Run",
+    "Application.AddPackagedGroceryDescriptionWindow.executor": "Run",
+    "Application.AddProductWindow.executor": "Run",
+    "Application.BlowfishCipher.executor": "Run",
+    "Application.CustomerAuthentication.executor": "Run",
+    "Application.CustomerCardPinWindow.executor": "Run",
+    "Application.CustomerScanCardWindow.executor": "Run",
+    "Application.CustomerShoppingWindow.executor": "Run",
+    "Application.DBConnection.executor": "Run",
+    "Application.FirstWindow.executor": "Run",
+    "Application.ManageInventoryWindow.executor": "Run",
+    "Application.ManagerAuthentication.executor": "Run",
+    "Application.ManagerLoginWindow.executor": "Run",
+    "Application.ManagerTasksWindow.executor": "Run",
+    "Application.ScanProductWindow.executor": "Run",
+    "Application.ShopProductsWindow.executor": "Run",
+    "Application.StartUpWindow.executor": "Run",
+    "Application.TrackSalesWindow.executor": "Run",
+    "Application.UpdateProductWindow.executor": "Run",
+    "Application.ViewApplianceDescriptionWindow.executor": "Run",
+    "Application.ViewCartWindow.executor": "Run",
+    "Application.ViewCosmeticsDescriptionWindow.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/DELL/Downloads/Java Libraries/jfreechart-1.5.3-javadoc.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/DELL/IdeaProjects/ScanDash-DBProject/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module"
+    ],
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\DELL\IdeaProjects\ScanDash-DBProject\src\main\java\SalesManagement" />
+      <recent name="C:\Users\DELL\IdeaProjects\ScanDash-DBProject\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\DELL\IdeaProjects\ScanDash-DBProject\src\main\resources\Images" />
+      <recent name="C:\Users\DELL\IdeaProjects\ScanDash-DBProject\src\main\resources" />
+      <recent name="C:\Users\DELL\IdeaProjects\ScanDash-DBProject\src\main\java\Windows" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ManagerTasksWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Windows.ManagerInterfaceWindows.ManagerTasksWindow" />
+      <module name="ScanDash-DBProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Windows.ManagerInterfaceWindows.AddProductWindows.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ManagerTasksWindow" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ecde34c1-abd3-4c51-bb1b-3c8bfe438f71" name="Changes" comment="" />
+      <created>1734791930501</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734791930501</updated>
+      <workItem from="1734791931600" duration="119058000" />
+    </task>
+    <task id="LOCAL-00001" summary="User Authentication Module">
+      <option name="closed" value="true" />
+      <created>1734792625201</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734792625201</updated>
+    </task>
+    <task id="LOCAL-00002" summary="User Authentication Module">
+      <option name="closed" value="true" />
+      <created>1734792776139</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734792776139</updated>
+    </task>
+    <task id="LOCAL-00003" summary="User Authentication Module with added gui">
+      <option name="closed" value="true" />
+      <created>1734853577468</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1734853577468</updated>
+    </task>
+    <task id="LOCAL-00004" summary="User Authentication Module with added gui">
+      <option name="closed" value="true" />
+      <created>1734853706122</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1734853706122</updated>
+    </task>
+    <task id="LOCAL-00005" summary="User Authentication Module with added gui">
+      <option name="closed" value="true" />
+      <created>1734853742182</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1734853742182</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Manager Tasks included for handling customers">
+      <option name="closed" value="true" />
+      <created>1734870517419</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1734870517419</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Manager Tasks included for handling customers">
+      <option name="closed" value="true" />
+      <created>1734870530795</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734870530795</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Manager Tasks included for handling customers">
+      <option name="closed" value="true" />
+      <created>1734870543773</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1734870543773</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added Encryption">
+      <option name="closed" value="true" />
+      <created>1734882823546</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1734882823546</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added Encryption">
+      <option name="closed" value="true" />
+      <created>1734882835362</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734882835362</updated>
+    </task>
+    <task id="LOCAL-00011" summary="i dontknow what happening">
+      <option name="closed" value="true" />
+      <created>1734892126923</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1734892126923</updated>
+    </task>
+    <task id="LOCAL-00012" summary="i dontknow what happening">
+      <option name="closed" value="true" />
+      <created>1734892132847</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1734892132847</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="User Authentication Module" />
+    <MESSAGE value="User Authentication Module with added gui" />
+    <MESSAGE value="Manager Tasks included for handling customers" />
+    <MESSAGE value="Added Encryption" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
+    <MESSAGE value="i dontknow what happening" />
+    <option name="LAST_COMMIT_MESSAGE" value="i dontknow what happening" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="postgresql-42.7.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/Java Libraries/postgresql-42.7.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/jfreechart-1.0.19.zip!/jfreechart-1.0.19/experimental" />
+      <root url="jar://$USER_HOME$/Downloads/jfreechart-1.0.19.zip!/jfreechart-1.0.19/source" />
+      <root url="jar://$USER_HOME$/Downloads/jfreechart-1.0.19.zip!/jfreechart-1.0.19/swt" />
+      <root url="jar://$USER_HOME$/Downloads/jfreechart-1.0.19.zip!/jfreechart-1.0.19/tests" />
+    </SOURCES>
+  </library>
+</component>
